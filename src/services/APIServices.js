@@ -20,3 +20,16 @@ const createAgenda = async (params) => {
     console.log(response);
     
 }
+
+ export const createContact = async (dispatch,contact) => {
+    const response = await fetch(`https://playground.4geeks.com/contact/agendas/Alberto/contacts`,{
+        method: "POST",
+        body: JSON.stringify(contact),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await response.json()
+    dispatch({type: 'add_contact',payload: data})
+    
+}
