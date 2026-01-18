@@ -1,3 +1,5 @@
+import { json } from "react-router-dom";
+
 export const getContacts = async (dispatch) => {
     const response = await fetch(`https://playground.4geeks.com/contact/agendas/Alberto/contacts`)
     console.log(response);
@@ -31,5 +33,20 @@ const createAgenda = async (params) => {
     })
     const data = await response.json()
     dispatch({type: 'add_contact',payload: data})
+    
+}
+
+
+export const editContact = async (contact, navigate) => {
+    const response = await fetch(`https://playground.4geeks.com/contact/agendas/Alberto/contacts/${contact.id}`, {
+        method: "PUT",
+        body: json.toString(contact),
+        headers: {
+            "Content-type": "application/json"
+        }
+    })
+    const data = await response.json()
+    console.log(data);
+    navigate("/")
     
 }
