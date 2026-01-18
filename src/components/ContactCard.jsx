@@ -1,4 +1,8 @@
+import { Link } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer";
+
+
+
 
 
 export const ContactCard = ({ contact }) => {
@@ -24,7 +28,9 @@ export const ContactCard = ({ contact }) => {
             </div>
             <div className="col-md-2 col-2">
 
-               
+
+
+                <Link to={`/edit/${contact.id}`}>
                     <button
                         type="button"
                         className="btn p-0 bg-transparent me-2"
@@ -32,25 +38,26 @@ export const ContactCard = ({ contact }) => {
                         <i className="fa-solid fa-pen-to-square"></i>
 
                     </button>
-                    
-        
+                </Link>
 
 
 
 
 
-                <button
-                    type="button"
-                    className="btn p-0 border-0 bg-transparent"
-                    data-bs-toggle="modal"
-                    data-bs-target={`#modal-${contact.id}`}
-                    aria-label={`Delete ${contact.name}`}
+                <Link to={`/delete`}>
+                    <button
+                        type="button"
+                        className="btn p-0 border-0 bg-transparent"
+                        data-bs-toggle="modal"
+                        data-bs-target={`#modal-${contact.id}`}
+                        aria-label={`Delete ${contact.name}`}
 
 
-                >
-                    <i className="fa-solid fa-trash"> </i>
+                    >
+                        <i className="fa-solid fa-trash"> </i>
 
-                </button>
+                    </button>
+                </Link>
 
             </div>
         </li >
