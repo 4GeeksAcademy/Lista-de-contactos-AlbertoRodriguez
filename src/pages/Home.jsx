@@ -31,7 +31,7 @@ export const Home = () => {
 					})
 				}
 			</div>
-			<p>Aqui hay un formulario</p>
+			
 			
 			<button onClick={() => createContact(dispatch,contact)}>Agregar Contacto</button>
 		</div>

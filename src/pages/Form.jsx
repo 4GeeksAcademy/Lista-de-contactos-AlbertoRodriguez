@@ -12,6 +12,8 @@ export const Form = () => {
     const { store, dispatch } = useGlobalReducer()
 
     const { id } = useParams()
+    console.log("Este es el id del contacto",id);
+    
 
     const navigate = useNavigate()
 
@@ -50,7 +52,7 @@ export const Form = () => {
 
 
     const contactToEdit = () => {
-        const contactFinded = store.contact.find(contact => {
+        const contactFinded = store.contacts.find(contact => {
            
 
             return contact.id === Number(id)
@@ -95,7 +97,7 @@ export const Form = () => {
                  <input 
                 type="text"
                 className="form-control mb-2"
-                placeholder="imail"
+                placeholder="Email"
                 name="email"
                 value={contact.email}
                 onChange={handleInputsChange} 
@@ -103,7 +105,7 @@ export const Form = () => {
                  <input 
                 type="text"
                 className="form-control mb-2"
-                placeholder="phone"
+                placeholder="Phone"
                 name="phone"
                 value={contact.phone}
                 onChange={handleInputsChange} 
@@ -111,12 +113,12 @@ export const Form = () => {
                  <input 
                 type="text"
                 className="form-control mb-2"
-                placeholder="addres"
+                placeholder="Addres"
                 name="address"
                 value={contact.address}
                 onChange={handleInputsChange} 
                 />
-                <button type="submit" className="btn-success w-100">Guardar</button>
+                <button type="submit" className="btn-success w-100">Salvar</button>
             </form>
         </div>
     )

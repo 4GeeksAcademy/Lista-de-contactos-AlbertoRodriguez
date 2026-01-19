@@ -37,10 +37,10 @@ const createAgenda = async (params) => {
 }
 
 
-export const editContact = async (contact, navigate) => {
+export const editContact = async (contact,navigate) => {
     const response = await fetch(`https://playground.4geeks.com/contact/agendas/Alberto/contacts/${contact.id}`, {
         method: "PUT",
-        body: json.toString(contact),
+        body: JSON.stringify(contact),
         headers: {
             "Content-type": "application/json"
         }
@@ -48,5 +48,7 @@ export const editContact = async (contact, navigate) => {
     const data = await response.json()
     console.log(data);
     navigate("/")
+    
+   
     
 }
