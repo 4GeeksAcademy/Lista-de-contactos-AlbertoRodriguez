@@ -1,5 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer";
+import { DeleteContac } from "../services/APIServices";
+
+
 
 
 
@@ -7,7 +10,8 @@ import useGlobalReducer from "../hooks/useGlobalReducer";
 
 export const ContactCard = ({ contact }) => {
 
-    const { store, dispatch } = useGlobalReducer
+    const { store, dispatch } = useGlobalReducer()
+    const navigate = useNavigate()
 
     return (
         <li className="row contact">
@@ -44,7 +48,7 @@ export const ContactCard = ({ contact }) => {
 
 
 
-                <Link to={`/delete`}>
+              
                     <button
                         type="button"
                         className="btn p-0 border-0 bg-transparent"
@@ -57,8 +61,39 @@ export const ContactCard = ({ contact }) => {
                         <i className="fa-solid fa-trash"> </i>
 
                     </button>
-                </Link>
+              
 
+                <button
+                    type="button"
+                    className="btn p-0  border-0 bg-transparent"
+                    data-bs-toggle="modal"
+                    data-bs-target={`#modal-${contact.id}`}
+                    aria-label={`Delete ${contact.name}`}
+                >
+                    <i className="fa-solid- fa-trash"></i>
+                </button>
+
+
+            </div>
+            <div class="modal fade" id={`modal-${contact.id}`} tabIndex="-1" aria-labelledby={`modalLabel-${contact.id}`} aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content" id={`modalLabel-${contact.id}`}> 
+                        <div className="modal-body">
+                            Estas seguro de eliminar a {contact.name} ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => {DeleteContac(contact.id, dispatch)
+                                setTimeout(() =>{
+                                    document.querySelector(".modal-backdrop")?.remove()
+                                    document.body.classList.remove("modal-open")
+                                    document.body.style=""
+                                },200
+                            )
+                            }}>Delete</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </li >
     )

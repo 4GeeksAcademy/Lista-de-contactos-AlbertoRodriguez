@@ -3,6 +3,9 @@ import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { createContact, getContacts } from "../services/APIServices.js";
 import { ContactCard } from "../components/ContactCard.jsx";
+import { Navbar } from "../components/Navbar.jsx";
+
+
 
 export const Home = () => {
 
@@ -22,6 +25,7 @@ export const Home = () => {
 
 	return (
 		<div className="container">
+			
 			<div>
 				{
 					store.contacts.map(contact => {
@@ -33,7 +37,7 @@ export const Home = () => {
 			</div>
 			
 			
-			<button onClick={() => createContact(dispatch,contact)}>Agregar Contacto</button>
+			
 		</div>
 	);
 }; 
